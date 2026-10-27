@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coffee Filter | Find the coffee shops people go back to</title>
+  <meta name="description" content="Discover small, independent coffee shops scored by return visits, not stars. Launching in Southern California." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind Play CDN (swap for a compiled build before heavy production traffic) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            charcoal: '#2E2A27',
+            stone: '#7A736D',
+            cream: '#FBF9F5',
+            brand: '#1A7CFF',
+            mint: '#CFF7E3',
+            sky: '#E8F0FF',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-gradient { background: linear-gradient(180deg, #1A7CFF 0%, #4E7CFF 55%, #8A6CFF 100%); }
+    .cta-gradient { background: linear-gradient(135deg, #1A7CFF 0%, #7B6CFF 100%); }
+  </style>
+</head>
+
+<body class="bg-white text-charcoal antialiased">
+
+  <!-- Reusable logo mark -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="logo-arc" x1="2.4" y1="16.3" x2="41.15" y2="16.3" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0088FF" />
+        <stop offset="1" stop-color="#986CFF" />
+      </linearGradient>
+      <linearGradient id="logo-outline" x1="1" y1="22" x2="60" y2="22" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FFFFFF" />
+        <stop offset="0.55" stop-color="#E8DCFF" />
+        <stop offset="1" stop-color="#FFFFFF" />
+      </linearGradient>
+      <symbol id="logo" viewBox="0 0 61 44">
+        <!-- Outer outline -->
+        <path d="M58.9345 13.1089C58.6261 12.6589 55.7497 8.57146 50.9109 5.28855C44.365 0.846546 37.2459 -0.156625 30.2441 2.35522C29.2216 1.99923 28.1674 1.71871 27.0903 1.51723C22.7701 0.711271 18.2508 1.22674 14.0199 3.00952C9.4002 4.95606 5.23938 8.31302 1.654 12.9871C1.4917 13.1972 1.36112 13.4229 1.26227 13.6578C1.25489 13.6749 1.24899 13.692 1.24235 13.7098C1.23128 13.7375 1.21948 13.766 1.20915 13.7938C1.09259 14.1135 1.03578 14.4467 1.03357 14.7777C1.03357 14.7849 1.03357 14.792 1.03357 14.7984C1.03357 14.8319 1.03504 14.8653 1.03578 14.8995C1.03578 14.9152 1.03578 14.9308 1.03726 14.9472C1.03873 14.9714 1.04095 14.9956 1.04242 15.0205C1.04464 15.0454 1.04611 15.0711 1.04832 15.096C1.0498 15.1109 1.05201 15.1259 1.05423 15.1408C1.05791 15.175 1.06234 15.2092 1.06751 15.2434C1.06824 15.2498 1.06972 15.2555 1.07046 15.2619C1.12283 15.5901 1.23054 15.9119 1.39506 16.2124C1.40244 16.2259 1.41055 16.2387 1.41793 16.2522C1.43416 16.2814 1.45039 16.3106 1.46809 16.3391C1.60089 16.557 1.76392 16.7606 1.95574 16.945L28.0265 42.1054C28.0368 42.1154 28.0471 42.124 28.0575 42.1339C28.0789 42.1546 28.101 42.1745 28.1231 42.1944C28.1408 42.2101 28.1585 42.2258 28.177 42.2407C28.2013 42.2614 28.2257 42.282 28.2507 42.3019C28.2559 42.3062 28.2603 42.3105 28.2655 42.314C28.278 42.324 28.2906 42.3326 28.3031 42.3425C28.3289 42.3625 28.3548 42.3817 28.3806 42.4002C28.399 42.413 28.4175 42.4258 28.4359 42.4379C28.4617 42.4557 28.4876 42.4735 28.5141 42.4906C28.5362 42.5049 28.5584 42.5177 28.5805 42.5312C28.6041 42.5454 28.6277 42.5604 28.6513 42.5739C28.6971 42.6003 28.7435 42.6252 28.7908 42.6487C28.8048 42.6558 28.8188 42.6615 28.8321 42.6686C28.8675 42.6857 28.9022 42.7028 28.9383 42.7185C28.9545 42.7256 28.9708 42.732 28.987 42.7384C29.0209 42.7526 29.0549 42.7669 29.0895 42.7797C29.1065 42.7861 29.1235 42.7918 29.1404 42.7982C29.1744 42.8103 29.2083 42.8224 29.2423 42.8338C29.26 42.8395 29.2777 42.8452 29.2954 42.8502C29.3293 42.8608 29.3632 42.8708 29.3979 42.8801C29.4164 42.8851 29.4341 42.8893 29.4525 42.8943C29.4864 42.9029 29.5211 42.9107 29.5551 42.9185C29.5735 42.9228 29.5927 42.9263 29.6111 42.9306C29.6451 42.9377 29.6797 42.9434 29.7137 42.9491C29.7328 42.952 29.7513 42.9555 29.7705 42.9584C29.8051 42.9634 29.8391 42.9676 29.8738 42.9719C29.8929 42.974 29.9121 42.9769 29.9313 42.9783C29.9667 42.9819 30.0021 42.984 30.0375 42.9862C30.056 42.9876 30.0744 42.989 30.0921 42.9897C30.1349 42.9918 30.1777 42.9926 30.2198 42.9933C30.2301 42.9933 30.2404 42.994 30.2515 42.994C30.3002 42.994 30.3489 42.9926 30.3983 42.9904C30.4034 42.9904 30.4093 42.9897 30.4145 42.9897C30.4573 42.9876 30.5001 42.9847 30.5429 42.9812C30.5532 42.9805 30.5635 42.979 30.5739 42.9776C30.6115 42.9741 30.6498 42.9698 30.6875 42.9648C30.6993 42.9634 30.7118 42.9612 30.7236 42.9598C30.7598 42.9548 30.7959 42.9484 30.8313 42.942C30.8439 42.9399 30.8572 42.937 30.8697 42.9349C30.9051 42.9278 30.9398 42.9207 30.9745 42.9128C30.9818 42.9114 30.9899 42.91 30.9973 42.9078C31.0025 42.9064 31.0084 42.905 31.0136 42.9036C31.0482 42.895 31.0829 42.8865 31.1168 42.8765C31.1301 42.8729 31.1427 42.8694 31.1559 42.8658C31.1906 42.8559 31.2253 42.8445 31.26 42.8331C31.2718 42.8288 31.2843 42.8252 31.2961 42.8217C31.3337 42.8089 31.3706 42.7953 31.4075 42.7811C31.4164 42.7775 31.4252 42.7747 31.4341 42.7711C31.4783 42.7533 31.5226 42.7348 31.5669 42.7156C31.586 42.7071 31.6045 42.6978 31.6237 42.6885C31.648 42.6772 31.6723 42.6658 31.696 42.6537C31.7203 42.6416 31.7439 42.6287 31.7683 42.6159C31.7867 42.606 31.8051 42.5967 31.8228 42.5867C31.8479 42.5725 31.873 42.5575 31.8981 42.5426C31.9143 42.5326 31.9306 42.5234 31.9468 42.5134C31.9719 42.4977 31.9969 42.4814 32.022 42.465C32.0375 42.4543 32.053 42.4443 32.0685 42.4337C32.0929 42.4166 32.1172 42.3995 32.1415 42.3817C32.1578 42.3696 32.174 42.3575 32.1902 42.3454C32.2124 42.3283 32.2345 42.3112 32.2566 42.2934C32.2625 42.2884 32.2692 42.2841 32.2751 42.2792C34.222 40.6922 35.9364 39.0418 37.4141 37.3352L58.5435 16.9436C59.6236 15.9012 59.7527 14.2893 58.9323 13.1103L58.9345 13.1089ZM47.15 10.1528C49.3152 11.5974 51.0201 13.2769 52.1459 14.5392L44.0235 22.3781C44.1445 20.2713 43.9357 18.1838 43.3912 16.1697C42.4617 12.7301 40.5923 9.60169 37.9674 7.07845C38.7199 7.087 39.4694 7.15392 40.2131 7.27923C42.548 7.67295 44.8822 8.63981 47.1507 10.1528H47.15ZM16.5348 8.57004C19.5942 7.28066 22.8314 6.90189 25.8966 7.4736C31.4296 8.50668 35.9099 12.5208 37.3094 17.7004C38.1039 20.6416 37.8693 23.8504 36.6306 26.9796C35.783 29.1205 34.4905 31.2137 32.7686 33.2399L30.25 35.6706L8.38876 14.5727C10.8786 11.8166 13.6104 9.80176 16.5348 8.56933V8.57004Z" fill="url(#logo-outline)" />
+        <!-- Green fills -->
+        <path d="M25.9121 7.47358C31.4451 8.50594 35.9247 12.52 37.3241 17.7004C38.1187 20.6415 37.8841 23.8504 36.6454 26.9795C35.7978 29.1211 34.5053 31.2144 32.7841 33.2399L30.2655 35.6706L8.40427 14.5727C10.8941 11.8166 13.6259 9.80173 16.5503 8.5693C19.6097 7.28063 22.8476 6.90115 25.9121 7.47358Z" fill="#08C83D" />
+        <path d="M52.1614 14.5392L44.0382 22.3788C44.1592 20.272 43.9504 18.1838 43.406 16.1704C42.4772 12.7301 40.6078 9.60169 37.9822 7.07916C38.7347 7.08771 39.4835 7.15392 40.2271 7.27994C42.562 7.67366 44.8962 8.63981 47.1647 10.1535C49.33 11.5988 51.0349 13.2776 52.1607 14.5399L52.1614 14.5392Z" fill="#08C83D" />
+        <!-- Gradient arc -->
+        <path d="M18.0752 29.9243C17.6864 29.9243 17.2976 29.7812 17.0011 29.4949L2.84544 15.8336C2.31354 15.3203 2.25083 14.5086 2.69863 13.9248C5.98745 9.63657 9.77128 6.51527 13.9454 4.64919C17.7167 2.96323 21.7639 2.36233 25.651 2.91268C29.1191 3.40323 32.3902 4.79016 35.1102 6.92466C37.8258 9.05488 39.8818 11.8415 41.0556 14.9828C41.3403 15.7446 40.9309 16.5847 40.1415 16.8595C39.3522 17.1344 38.4816 16.7392 38.1969 15.9774C37.2105 13.3374 35.4798 10.9936 33.1928 9.19941C30.897 7.39812 28.1364 6.22763 25.2091 5.81326C21.9085 5.34621 18.4551 5.86382 15.2216 7.30912C11.8406 8.82064 8.72148 11.294 5.93507 14.6688L19.1486 27.421C19.7417 27.9934 19.7417 28.9218 19.1486 29.4942C18.852 29.7805 18.4632 29.9236 18.0745 29.9236L18.0752 29.9243Z" fill="url(#logo-arc)" />
+        <!-- Location pin -->
+        <circle cx="17.3065" cy="27.76" r="6.5" fill="#fff" fill-opacity="0.2" />
+        <circle cx="17.3065" cy="27.76" r="4.8" fill="#1F87FF" />
+        <path d="M14.6174 25.5036C14.5621 25.3698 14.63 25.2188 14.7679 25.1654C14.8321 25.1405 14.9037 25.1405 14.9679 25.1654L19.8413 26.9945C19.9808 27.0472 20.0494 27.1988 19.9948 27.3327C19.9645 27.4067 19.9018 27.4637 19.8236 27.4872L17.9586 28.0454C17.7875 28.0966 17.6539 28.2255 17.6016 28.3899L17.0239 30.1891C16.9797 30.3265 16.8277 30.4034 16.6846 30.3607C16.6064 30.3372 16.5429 30.2802 16.5134 30.2062L14.6182 25.5029L14.6174 25.5036Z" fill="#EAF2FF" />
+        <!-- Purple dot -->
+        <circle cx="40.1" cy="16.32" r="3.45" fill="#fff" fill-opacity="0.2" />
+        <circle cx="40.05" cy="16.37" r="2.4" fill="#986CFF" />
+        <circle cx="40.05" cy="16.37" r="1.03" fill="#fff" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero-gradient text-white overflow-hidden">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <nav class="flex items-center gap-2 py-4 sm:py-5 justify-center md:justify-start" aria-label="Primary">
+        <svg class="h-8 w-11" viewBox="0 0 61 44" role="img" aria-label="Coffee Filter logo"><use href="#logo" /></svg>
+        <span class="text-sm font-normal">Coffee Filter</span>
+      </nav>
+
+      <div class="mx-auto max-w-3xl pt-10 sm:pt-14 text-center">
+        <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-charcoal">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand"></span>
+          Launching in Southern California
+        </span>
+
+        <h1 class="mt-8 text-[44px] leading-[1.05] sm:text-6xl md:text-[68px] font-light tracking-tight">
+          Find the coffee shops people go back to.
+        </h1>
+        <p class="mx-auto mt-6 max-w-md text-base sm:text-lg font-light text-white/90">
+          Discover small, independent coffee shops scored by return visits, not stars.
+        </p>
+
+        <!-- Waitlist form (hero) -->
+        <!-- YOUR_FORM_ENDPOINT_HERE: replace the action value below with your email backend endpoint -->
+        <form action="YOUR_FORM_ENDPOINT_HERE" method="POST"
+              class="mx-auto mt-8 flex w-full max-w-md flex-col gap-2 sm:flex-row">
+          <label for="email-hero" class="sr-only">Email address</label>
+          <input id="email-hero" name="email" type="email" required autocomplete="email"
+                 placeholder="Enter your email"
+                 class="h-12 w-full rounded-lg border-0 bg-[#EBEBFF] px-4 text-sm text-charcoal placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-white" />
+          <button type="submit"
+                  class="h-12 shrink-0 rounded-lg bg-charcoal px-6 text-sm font-medium text-white transition hover:bg-black focus:outline-none focus:ring-2 focus:ring-white">
+            Join the waitlist
+          </button>
+        </form>
+
+        <p class="mt-5 text-xs text-white/80">
+          Starting in Southern California. Early access. No spam. Unsubscribe anytime.
+        </p>
+      </div>
+
+      <!-- Phone mockup (cropped at bottom) -->
+      <div class="mx-auto mt-10 h-[300px] sm:h-[340px] w-[250px] sm:w-[290px] overflow-hidden rounded-t-[44px] border-[10px] border-b-0 border-[#1B1B1F] bg-white">
+        <div class="p-3">
+          <div class="relative rounded-2xl bg-gradient-to-b from-brand to-[#8A6CFF] p-3 h-[190px] sm:h-[220px]">
+            <div class="flex items-start justify-between text-white">
+              <div class="flex items-center gap-1">
+                <span class="text-lg font-medium leading-none">5</span>
+                <span class="text-[7px] font-medium uppercase leading-tight tracking-wider">Coffee<br />Shops</span>
+              </div>
+              <div class="flex items-center gap-1 rounded-full bg-brand px-2 py-1 ring-2 ring-white">
+                <span class="text-sm font-medium leading-none">10</span>
+                <span class="text-[6px] font-medium uppercase leading-tight tracking-wider">Mile<br />Radius</span>
+              </div>
+            </div>
+            <div class="absolute left-1/2 top-[56%] h-[130px] w-[130px] sm:h-[150px] sm:w-[150px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8DEBA0]">
+              <span class="absolute left-[46%] top-[12%] h-2 w-2 rounded-full border-2 border-charcoal bg-white"></span>
+              <span class="absolute left-[18%] top-[30%] h-2 w-2 rounded-full border-2 border-charcoal bg-white"></span>
+              <span class="absolute left-[74%] top-[30%] h-2 w-2 rounded-full border-2 border-charcoal bg-white"></span>
+              <span class="absolute left-[78%] top-[56%] h-2 w-2 rounded-full border-2 border-charcoal bg-white"></span>
+              <span class="absolute left-[22%] top-[72%] h-2 w-2 rounded-full border-2 border-charcoal bg-white"></span>
+              <span class="absolute left-[46%] top-[48%] h-3 w-3 rounded-full border-2 border-white bg-brand ring-2 ring-brand/40"></span>
+            </div>
+          </div>
+          <div class="mt-3 flex gap-2 text-[8px] font-medium uppercase">
+            <span class="rounded-full bg-brand px-3 py-1.5 text-white">Most Returned</span>
+            <span class="rounded-full bg-sky px-3 py-1.5 text-brand">Open Now</span>
+          </div>
+          <div class="mt-3 rounded-xl border border-black/10 p-3">
+            <span class="rounded bg-mint px-2 py-0.5 text-[9px] font-medium text-[#0E8A3A]">9 in 10 return</span>
+            <p class="mt-2 text-sm font-medium">Vinakas</p>
+            <p class="text-[9px] text-stone"><span class="text-[#0E8A3A]">Open Now</span> &bull; 0.1 Mi</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ INTRO + STATS ============ -->
+    <section class="bg-white">
+      <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 md:grid-cols-2 md:gap-0">
+        <div class="md:border-r md:border-black/10 md:pr-10">
+          <p class="text-[10px] font-medium uppercase tracking-[0.16em] text-brand">Coffee without the guesswork</p>
+          <h2 class="mt-4 text-3xl font-light leading-tight sm:text-4xl">
+            Less scrolling past star ratings.<br class="hidden sm:block" />
+            More cups worth coming back for.
+          </h2>
+        </div>
+        <dl class="grid grid-cols-3 gap-4 border-t border-black/10 pt-10 md:border-0 md:pl-14 md:pt-2">
+          <div>
+            <dt class="order-2 mt-1 text-xs leading-snug text-stone">Southern California shops</dt>
+            <dd class="text-3xl font-light sm:text-4xl">2,500+</dd>
+          </div>
+          <div>
+            <dt class="mt-1 text-xs text-stone">Ads</dt>
+            <dd class="text-3xl font-light sm:text-4xl">0</dd>
+          </div>
+          <div>
+            <dt class="mt-1 text-xs text-stone">Star ratings</dt>
+            <dd class="text-3xl font-light sm:text-4xl">0</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ 01 DISCOVER ============ -->
+    <section class="bg-cream">
+      <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 sm:py-24 md:grid-cols-2 md:gap-16">
+        <div class="rounded-[28px] bg-mint p-6 sm:p-12 md:order-1">
+          <div class="space-y-4">
+            <article class="rounded-xl border border-black/10 bg-white p-4 shadow-sm">
+              <span class="rounded bg-mint px-2 py-0.5 text-[10px] font-medium text-[#0E8A3A]">9 in 10 return</span>
+              <h3 class="mt-2 text-sm font-medium">Dark Horse Coffee Roasters</h3>
+              <p class="text-[11px] text-stone"><span class="text-red-500">Closed</span> &bull; 2.1 Mi</p>
+              <p class="mt-1 text-[11px] text-stone">4506 30th St San Diego CA 92116</p>
+            </article>
+            <article class="rounded-xl border border-black/10 bg-white p-4 shadow-sm">
+              <span class="rounded bg-mint px-2 py-0.5 text-[10px] font-medium text-[#0E8A3A]">8 in 10 return</span>
+              <h3 class="mt-2 text-sm font-medium">James Coffee Co</h3>
+              <p class="text-[11px] text-stone"><span class="text-[#0E8A3A]">Open Now</span> &bull; 1.2 Mi</p>
+              <p class="mt-1 text-[11px] text-stone">2870 Fourth Ave San Diego CA 92103</p>
+            </article>
+            <article class="rounded-xl border border-black/10 bg-white p-4 shadow-sm">
+              <span class="rounded bg-mint px-2 py-0.5 text-[10px] font-medium text-[#0E8A3A]">7 in 10 return</span>
+              <h3 class="mt-2 text-sm font-medium">Caf&eacute; Moto</h3>
+              <p class="text-[11px] text-stone"><span class="text-[#0E8A3A]">Open Now</span> &bull; 0.8 Mi</p>
+              <p class="mt-1 text-[11px] text-stone">2619 National Ave San Diego CA 92113</p>
+            </article>
+          </div>
+        </div>
+
+        <div>
+          <span class="inline-block rounded-full bg-sky px-3 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-brand">01 &middot; Discover</span>
+          <h2 class="mt-5 text-4xl font-light leading-tight sm:text-5xl">Follow the regulars, not the hype.</h2>
+          <p class="mt-5 max-w-md text-[15px] leading-relaxed text-stone">
+            Find independently owned coffee shops near you and wherever you travel. Shops are scored by how many people come back.
+          </p>
+          <ul class="mt-6 space-y-3 text-sm">
+            <li class="flex items-center gap-3"><span class="flex h-5 w-5 items-center justify-center rounded-full bg-sky text-brand">&#10003;</span>Small, independent shops only</li>
+            <li class="flex items-center gap-3"><span class="flex h-5 w-5 items-center justify-center rounded-full bg-sky text-brand">&#10003;</span>No stars. No reviews. No ads.</li>
+            <li class="flex items-center gap-3"><span class="flex h-5 w-5 items-center justify-center rounded-full bg-sky text-brand">&#10003;</span>Nearest first, or sort by Most Returned</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 WHY THEY COME BACK ============ -->
+    <section class="bg-white">
+      <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 sm:py-24 md:grid-cols-2 md:gap-16">
+        <div class="order-2 md:order-1">
+          <span class="inline-block rounded-full bg-sky px-3 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-brand">02 &middot; Why they come back</span>
+          <h2 class="mt-5 text-4xl font-light leading-tight sm:text-5xl">See why people keep coming back.</h2>
+          <p class="mt-5 max-w-md text-[15px] leading-relaxed text-stone">
+            Regulars pick what brings them back. The coffee. The staff. A good place to work. Every shop shows its top reasons, and the real numbers behind its score.
+          </p>
+          <div class="mt-8 rounded-2xl border border-black/10 bg-cream p-5">
+            <p class="text-sm">Filter by what matters to you</p>
+            <div class="mt-3 flex flex-wrap gap-2 rounded-xl bg-white p-3 text-[9px] font-medium uppercase tracking-wide text-brand">
+              <span class="rounded-full bg-sky px-3 py-1.5">Great place to work</span>
+              <span class="rounded-full bg-sky px-3 py-1.5">Drive-thru</span>
+              <span class="rounded-full bg-sky px-3 py-1.5">Value</span>
+              <span class="rounded-full bg-sky px-3 py-1.5">Specialty drinks</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-1 rounded-[28px] bg-sky px-6 pt-10 sm:px-14 md:order-2">
+          <div class="mx-auto h-[420px] max-w-[340px] overflow-hidden rounded-t-3xl border-[6px] border-b-0 border-[#1B1B1F]/80 bg-white p-4">
+            <div class="flex justify-between text-xs text-stone"><span>&#8679;</span><span>&times;</span></div>
+            <div class="mt-2 flex items-start justify-between">
+              <div>
+                <h3 class="text-lg font-medium">Mneumonic Coffee</h3>
+                <p class="text-[10px] text-stone">2604 Fifth Ave, San Diego, CA 92103</p>
+              </div>
+              <span class="rounded-full bg-mint px-2 py-0.5 text-[9px] font-medium text-[#0E8A3A]">OPEN</span>
+            </div>
+            <div class="mt-3 grid grid-cols-3 gap-2 text-center text-[10px]">
+              <div class="rounded-xl border border-black/10 py-3 text-brand">Directions</div>
+              <div class="rounded-xl border border-black/10 py-3 text-brand">Check In</div>
+              <div class="rounded-xl border border-black/10 py-3 text-brand">Favorite</div>
+            </div>
+            <div class="mt-3 rounded-xl border border-black/10 p-3 text-[10px]">
+              <p class="font-medium">Personal History</p>
+              <div class="mt-2 flex justify-between text-stone"><span>4 visits</span><span>Last visit: Sept 9</span></div>
+            </div>
+            <div class="mt-3 rounded-xl border border-black/10 p-3 text-[10px]">
+              <p class="font-medium">Loyalty &amp; Revisit Rate</p>
+              <span class="mt-2 inline-block rounded bg-mint px-2 py-0.5 text-[9px] font-medium text-[#0E8A3A]">9 in 10 return</span>
+              <div class="mt-2 flex gap-1">
+                <span class="h-2 flex-1 rounded-sm bg-brand"></span><span class="h-2 flex-1 rounded-sm bg-brand"></span><span class="h-2 flex-1 rounded-sm bg-brand"></span><span class="h-2 flex-1 rounded-sm bg-brand"></span><span class="h-2 flex-1 rounded-sm bg-brand"></span><span class="h-2 flex-1 rounded-sm bg-brand"></span><span class="h-2 flex-1 rounded-sm bg-brand"></span><span class="h-2 flex-1 rounded-sm bg-brand"></span><span class="h-2 flex-1 rounded-sm bg-sky"></span>
+              </div>
+              <p class="mt-2 text-stone">184 of 200 people came back</p>
+              <p class="mt-2 text-[9px] font-medium uppercase text-stone">Trend</p>
+              <p class="text-stone">Up from 8 in 10 six months ago</p>
+            </div>
+            <div class="mt-3 rounded-xl border border-black/10 p-3 text-[10px]">
+              <p class="font-medium">All Time</p>
+              <p class="text-stone">340 people have come back</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 CHECK IN ============ -->
+    <section class="bg-cream">
+      <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 sm:py-24 md:grid-cols-2 md:gap-16">
+        <div class="rounded-[28px] bg-brand px-6 pt-10 sm:px-14">
+          <div class="mx-auto h-[420px] max-w-[340px] overflow-hidden rounded-t-3xl bg-white p-4">
+            <div class="mx-auto h-1 w-10 rounded-full bg-black/20"></div>
+            <div class="mt-4 rounded-2xl border border-black/10 p-6 pb-16 text-center shadow-sm">
+              <div class="mx-auto mt-16 flex h-12 w-12 items-center justify-center rounded-full bg-brand text-xl text-white">&#10003;</div>
+              <p class="mt-3 text-[9px] font-medium uppercase tracking-widest text-brand">Check-in confirmed</p>
+              <p class="mt-1 text-xl font-light">3rd visit</p>
+              <p class="text-sm font-medium">Por Vida Cafe</p>
+            </div>
+            <p class="mt-4 text-center text-xs font-medium">What keeps you coming back?</p>
+            <p class="text-center text-[10px] text-stone">Pick up to three.</p>
+            <div class="mt-3 flex flex-wrap justify-center gap-1.5 text-[9px] text-stone">
+              <span class="rounded-full bg-black/5 px-3 py-1.5">The Coffee</span>
+              <span class="rounded-full bg-black/5 px-3 py-1.5">Specialty Drinks</span>
+              <span class="rounded-full bg-black/5 px-3 py-1.5">Food</span>
+              <span class="rounded-full bg-black/5 px-3 py-1.5">The Staff</span>
+              <span class="rounded-full bg-black/5 px-3 py-1.5">The Neighborhood</span>
+              <span class="rounded-full bg-black/5 px-3 py-1.5">Value</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="inline-block rounded-full bg-sky px-3 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-brand">03 &middot; Check in</span>
+          <h2 class="mt-5 text-4xl font-light leading-tight sm:text-5xl">Check in.<br />That's all it takes.</h2>
+          <p class="mt-5 max-w-md text-[15px] leading-relaxed text-stone">
+            Tap Check In when you're at a shop. Come back another day and it counts. Your history stays private. Your returns help others find the good ones.
+          </p>
+          <dl class="mt-8 grid grid-cols-3 gap-3">
+            <div class="rounded-xl bg-white p-4"><dd class="text-2xl font-light">0</dd><dt class="mt-2 text-[10px] uppercase tracking-widest text-stone">Stars</dt></div>
+            <div class="rounded-xl bg-white p-4"><dd class="text-2xl font-light">0</dd><dt class="mt-2 text-[10px] uppercase tracking-widest text-stone">Paid spots</dt></div>
+            <div class="rounded-xl bg-white p-4"><dd class="text-2xl font-light">1</dd><dt class="mt-2 text-[10px] uppercase tracking-widest text-stone">Count per person</dt></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="bg-white">
+      <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-20">
+        <div class="cta-gradient grid items-center gap-10 rounded-[28px] px-6 py-12 text-white sm:px-14 md:grid-cols-2">
+          <div class="order-2 md:order-1">
+            <p class="text-[10px] font-medium uppercase tracking-[0.16em] text-white/70">Your next great cup is close</p>
+            <h2 class="mt-4 text-4xl font-light leading-tight sm:text-5xl">Coffee is better when it's local.</h2>
+            <p class="mt-5 max-w-sm text-[15px] leading-relaxed text-white/90">
+              Join the waitlist and be first to find the shops your city keeps going back to.
+            </p>
+
+            <!-- Waitlist form (footer CTA) -->
+            <!-- YOUR_FORM_ENDPOINT_HERE: replace the action value below with your email backend endpoint -->
+            <form action="YOUR_FORM_ENDPOINT_HERE" method="POST" class="mt-6 flex w-full max-w-sm flex-col gap-2 sm:flex-row">
+              <label for="email-cta" class="sr-only">Email address</label>
+              <input id="email-cta" name="email" type="email" required autocomplete="email"
+                     placeholder="Enter your email"
+                     class="h-12 w-full rounded-lg border-0 bg-[#EBEBFF] px-4 text-sm text-charcoal placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-white" />
+              <button type="submit"
+                      class="h-12 shrink-0 rounded-lg bg-charcoal px-6 text-sm font-medium text-white transition hover:bg-black focus:outline-none focus:ring-2 focus:ring-white">
+                Join the waitlist
+              </button>
+            </form>
+
+            <p class="mt-5 text-xs text-white/80">Outside SoCal? Join anyway. We'll tell you when we reach your city.</p>
+          </div>
+
+          <div class="order-1 flex justify-center md:order-2">
+            <svg class="h-36 w-52 sm:h-52 sm:w-72" viewBox="0 0 61 44" aria-hidden="true"><use href="#logo" /></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 pb-10 pt-6 sm:px-8">
+      <div class="flex items-start justify-between">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-brand"><svg class="h-3 w-4" viewBox="0 0 61 44" aria-hidden="true"><use href="#logo" /></svg></span>
+            <span class="text-sm font-medium">Coffee Filter</span>
+          </div>
+          <p class="mt-3 text-xs text-stone">Small shops. Real regulars.</p>
+        </div>
+        <a href="#" aria-label="Instagram" class="mt-1 flex h-7 w-7 items-center justify-center rounded border border-black/20 text-xs">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+      </div>
+      <hr class="mt-8 border-black/10" />
+      <p class="mt-6 text-[11px] text-stone">&copy; 2026 Coffee Filter. Made for better coffee discovery.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
